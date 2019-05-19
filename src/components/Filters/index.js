@@ -37,17 +37,15 @@ return (
         <div className="navbar-item">
             <DateFilter date={ filters.dateTo } icon="sign-out-alt" />
         </div>
-        
+
         <div className="navbar-item">
             <OptionsFilter options={countryOptions} selected={ filters.country } icon="globe" />
         </div>
         <div className="navbar-item">
-            <OptionsFilter options={priceOptions} selected={ filters.price }
-                icon="dollar-sign" />
+            <OptionsFilter options={priceOptions} selected={ filters.price } icon="dollar-sign" />
         </div>
         <div className="navbar-item">
-            <OptionsFilter options={roomsOptions} selected={ filters.rooms }
-                icon="bed" />
+            <OptionsFilter options={roomsOptions} selected={ filters.rooms } icon="bed" />
         </div>
     </nav>
 )

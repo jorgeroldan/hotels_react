@@ -9,7 +9,7 @@ const DateFilter = ({date, name, icon  }) => {
     return (
         <div className="field">
             <div className="control has-icons-left">
-                <input className="input" type="date" name={name} value={dateFormatted}/>
+                <input className="input" type="date" name={name} value={dateFormatted} onChange={() => console.log('OnChange Selected')} />
                 <span className="icon is-small is-left">
                 <i className={`fas fa-${icon}`}></i>
                 </span>
@@ -22,7 +22,7 @@ const DateFilter = ({date, name, icon  }) => {
 DateFilter.prototype = {
     date: PropTypes.instanceOf(dayjs), 
     name: PropTypes.string, 
-    icon: PropTypes.oneOf('sign-in-alt', 'sign-out-alt'), 
+    icon: PropTypes.oneOf(['sign-in-alt', 'sign-out-alt']), 
 }
 
 export default DateFilter

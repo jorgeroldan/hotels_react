@@ -7,7 +7,7 @@ const OptionsFilter = ({options, name, selected, icon, }) => {
         <div className="field">
             <div className="control has-icons-left">
                 <div className="select" style={ {width: '100%'} }>
-                <select style={ {width: '100%'} } name={name} value={selected}>
+                <select style={ {width: '100%'} } name={name} value={selected} onChange={() => console.log('OnChange Selected')}>
                     {options.map(option => <option value={option.value}> {option.name} </option>)}
                 </select>
                 </div>
@@ -22,13 +22,13 @@ const OptionsFilter = ({options, name, selected, icon, }) => {
 OptionsFilter.prototype = {
     options: PropTypes.arrayOf(
         PropTypes.shape({
-            value: PropTypes.number, 
+            value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]), 
             name: PropTypes.string, 
         })
     ), 
     name: PropTypes.string, 
-    selected: PropTypes.string, 
-    icon: PropTypes.oneOf('sign-in-alt', 'sign-out-alt'), 
+    selected: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),  
+    icon: PropTypes.oneOf(['globe', 'dollar-sign', 'bed']), 
 }
 
 export default OptionsFilter

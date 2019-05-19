@@ -3,7 +3,6 @@ import dayjs from 'dayjs'
 import 'dayjs/locale/es'
 
 import Hero from '../Hero'
-import filters from '../Filters'
 import Filters from '../Filters';
 
 dayjs.locale('es')
@@ -34,7 +33,6 @@ class App extends Component {
     )
   } 
 }
-
 
 
 export default App
