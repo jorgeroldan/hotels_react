@@ -36,8 +36,8 @@ class App extends Component {
 
 Hero.propTypes = {
   filters: PropTypes.shape({
-    dateFrom: PropTypes.object, 
-    dateTo: PropTypes.object,
+    dateFrom: PropTypes.instanceOf(dayjs), 
+    dateTo: PropTypes.instanceOf(dayjs),
     country: PropTypes.string, 
     price: PropTypes.number, 
     rooms: PropTypes.number, 
