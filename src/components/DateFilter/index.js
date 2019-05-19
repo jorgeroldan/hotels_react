@@ -9,7 +9,7 @@ const DateFilter = ({date, name, icon  }) => {
     return (
         <div className="field">
             <div className="control has-icons-left">
-                <input className="input" type="date" name={name} value={dateFormatted} onChange={() => console.log('OnChange Selected')} />
+                <input className="input" type="date" name={name} value={dateFormatted} onChange={event => console.log({ name: event.target.name, value: event.target.value })}  />
                 <span className="icon is-small is-left">
                 <i className={`fas fa-${icon}`}></i>
                 </span>

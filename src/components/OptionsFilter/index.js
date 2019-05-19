@@ -8,9 +8,18 @@ const OptionsFilter = ({options, name, selected, icon, }) => {
         <div className="field">
             <div className="control has-icons-left">
                 <div className="select" style={ {width: '100%'} }>
-                <select style={ {width: '100%'} } name={name} value={selected} onChange={() => console.log('OnChange Selected')}>
-                    {options.map(option => <option key={nanoid()} value={option.value}> {option.name} </option>)}
-                </select>
+                <select 
+                    style={ {width: '100%'} } 
+                    name={name} 
+                    value={selected} 
+                    onChange={event => console.log({ name: event.target.name, value: event.target.value })} 
+                    >
+                    
+                    {options.map(option => 
+                        <option key={nanoid()} value={option.value}> 
+                            {option.name}    
+                        </option>)}
+                    </select>
                 </div>
                 <div className="icon is-small is-left">
                 <i className={`fas fa-${icon}`}></i>
