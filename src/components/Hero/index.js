@@ -1,4 +1,6 @@
 import React from 'react'
+import dayjs from 'dayjs'
+import PropTypes from 'prop-types'
 
 const Hero = ({filters}) => {
   const {dateFrom, dateTo, country, price, rooms} = filters
@@ -23,6 +25,16 @@ const Hero = ({filters}) => {
         </div>
       </section>
     )
+  }
+
+  Hero.propTypes = {
+    filters: PropTypes.shape({
+      dateFrom: PropTypes.instanceOf(dayjs), 
+      dateTo: PropTypes.instanceOf(dayjs),
+      country: PropTypes.string, 
+      price: PropTypes.number, 
+      rooms: PropTypes.number, 
+    })
   }
 
 export default Hero

@@ -1,13 +1,15 @@
 import React from 'react'
-import dayjs from 'dayjs'
 import PropTypes from 'prop-types'
+import dayjs from 'dayjs'
 
-const DateFilter = ({date, icon  }) => {
+const DateFilter = ({date, name, icon  }) => {
+
+    const dateFormatted = date.format('YYYY[-]MM[-]DD')
 
     return (
         <div className="field">
             <div className="control has-icons-left">
-                <input className="input" type="date" value={date}/>
+                <input className="input" type="date" name={name} value={dateFormatted}/>
                 <span className="icon is-small is-left">
                 <i className={`fas fa-${icon}`}></i>
                 </span>
@@ -19,7 +21,8 @@ const DateFilter = ({date, icon  }) => {
 
 DateFilter.prototype = {
     date: PropTypes.instanceOf(dayjs), 
-    icon: PropTypes.string, 
+    name: PropTypes.string, 
+    icon: PropTypes.oneOf('sign-in-alt', 'sign-out-alt'), 
 }
 
 export default DateFilter
