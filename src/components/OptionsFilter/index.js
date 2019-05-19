@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import nanoid from 'nanoid'
 
 const OptionsFilter = ({options, name, selected, icon, }) => {
 
@@ -8,7 +9,7 @@ const OptionsFilter = ({options, name, selected, icon, }) => {
             <div className="control has-icons-left">
                 <div className="select" style={ {width: '100%'} }>
                 <select style={ {width: '100%'} } name={name} value={selected} onChange={() => console.log('OnChange Selected')}>
-                    {options.map(option => <option value={option.value}> {option.name} </option>)}
+                    {options.map(option => <option key={nanoid()} value={option.value}> {option.name} </option>)}
                 </select>
                 </div>
                 <div className="icon is-small is-left">
