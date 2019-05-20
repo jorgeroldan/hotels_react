@@ -7,7 +7,7 @@ const Hero = ({filters}) => {
 
   const countryText = country ? `en ${country}` : ''
   const priceText = price ? `por $${price}`: ''
-  const roomsText = rooms ? `de hasta $${rooms} habitaciones`: ''
+  const roomsText = rooms ? `de hasta ${rooms} habitaciones`: ''
 
   const dateToFormatted = dateFrom.format('dddd[,] D [de] MMMM [de] YYYY')
   const dateFromFormatted = dateTo.format('dddd[,] D [de] MMMM [de] YYYY')

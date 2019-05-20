@@ -22,13 +22,15 @@ class App extends Component {
     // console.log('dayjs format', this.state.filters.dateFrom.format())
   }
 
+  handleFilterChange = newFilters => this.setState({filters: newFilters})
+
   render() {
     const {filters} = this.state
 
     return (
       <div className="container">
         <Hero filters={filters} />
-        <Filters filters={filters} />
+        <Filters filters={filters} onFilterChange={this.handleFilterChange} />
       </div>
     )
   } 

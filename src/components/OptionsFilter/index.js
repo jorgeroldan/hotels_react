@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import nanoid from 'nanoid'
 
-const OptionsFilter = ({options, name, selected, icon, }) => {
+const OptionsFilter = ({options, name, selected, icon, onOptionChange }) => {
 
     return (
         <div className="field">
@@ -12,7 +12,7 @@ const OptionsFilter = ({options, name, selected, icon, }) => {
                     style={ {width: '100%'} } 
                     name={name} 
                     value={selected} 
-                    onChange={event => console.log({ name: event.target.name, value: event.target.value })} 
+                    onChange={onOptionChange} 
                     >
                     
                     {options.map(option => 
@@ -39,6 +39,7 @@ OptionsFilter.prototype = {
     name: PropTypes.string, 
     selected: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),  
     icon: PropTypes.oneOf(['globe', 'dollar-sign', 'bed']), 
+    onOptionChange: PropTypes.func, 
 }
 
 export default OptionsFilter

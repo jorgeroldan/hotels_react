@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
 
@@ -28,27 +28,68 @@ const roomsOptions = [
     {value: 30, name: 'Hotel grande' } 
 ]
  
-const Filters = ({ filters }) => {
-return (
-    <nav className="navbar is-info" style={ {justifyContent: 'center' } }>
-        <div className="navbar-item">
-            <DateFilter name="dateFrom" date={ filters.dateFrom} icon="sign-in-alt" />
-        </div>
-        <div className="navbar-item">
-            <DateFilter name="dateTo" date={ filters.dateTo } icon="sign-out-alt" />
-        </div>
+class Filters extends Component {
+    handleOptionChange = (event) => {
+        const {filters, onFilterChange} = this.props
+        let {name, value} = event.target
+        
+        console.log('filters:', filters)
+        console.log('name:', name, value)
 
-        <div className="navbar-item">
-            <OptionsFilter name="country"options={countryOptions} selected={ filters.country } icon="globe" />
-        </div>
-        <div className="navbar-item">
-            <OptionsFilter name="price" options={priceOptions} selected={ filters.price } icon="dollar-sign" />
-        </div>
-        <div className="navbar-item">
-            <OptionsFilter name="rooms" options={roomsOptions} selected={ filters.rooms } icon="bed" />
-        </div>
-    </nav>
-)
+        if (name === 'dateFrom' || name === 'dateTo') value = dayjs(value)
+
+        const newFilters = {
+            ...filters, 
+            [name]: value
+        }
+      
+        onFilterChange(newFilters)
+      }
+
+    render(){
+        const { filters } = this.props
+
+        return (
+            <nav className="navbar is-info" style={ {justifyContent: 'center' } }>
+                <div className="navbar-item">
+                    <DateFilter 
+                    onDateChange={this.handleOptionChange}
+                    name="dateFrom" 
+                    date={ filters.dateFrom} 
+                    icon="sign-in-alt" />
+                </div>
+                <div className="navbar-item">
+                    <DateFilter 
+                    onDateChange={this.handleOptionChange}
+                    name="dateTo" 
+                    date={ filters.dateTo } 
+                    icon="sign-out-alt" />
+                </div>
+        
+                <div className="navbar-item">
+                    <OptionsFilter 
+                    onOptionChange={this.handleOptionChange}
+                    name="country"options={countryOptions} 
+                    selected={ filters.country } 
+                    icon="globe" />
+                </div>
+                <div className="navbar-item">
+                    <OptionsFilter 
+                    onOptionChange={this.handleOptionChange}
+                    name="price" options={priceOptions} 
+                    selected={ filters.price } 
+                    icon="dollar-sign" />
+                </div>
+                <div className="navbar-item">
+                    <OptionsFilter 
+                    onOptionChange={this.handleOptionChange}
+                    name="rooms" options={roomsOptions} 
+                    selected={ filters.rooms } 
+                    icon="bed" />
+                </div>
+            </nav>
+        )
+    }
 }
 
 Filters.propTypes = {
@@ -58,7 +99,8 @@ Filters.propTypes = {
       country: PropTypes.string, 
       price: PropTypes.number, 
       rooms: PropTypes.number, 
-    })
+    }), 
+    onFilterChange: PropTypes.func, 
   }
 
 export default Filters
