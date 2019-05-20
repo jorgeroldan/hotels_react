@@ -32,9 +32,6 @@ class Filters extends Component {
     handleOptionChange = (event) => {
         const {filters, onFilterChange} = this.props
         let {name, value} = event.target
-        
-        console.log('filters:', filters)
-        console.log('name:', name, value)
 
         if (name === 'dateFrom' || name === 'dateTo') value = dayjs(value)
 
