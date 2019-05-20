@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes  from 'prop-types'
+import dayjs from 'dayjs'
 
-const Hotel = ({slug, name, photo, description, availabilityFrom, availabilityTo, rooms, city, country, price}) => {
+const Hotel = ({nanoid, slug, name, photo, description, availabilityFrom, availabilityTo, rooms, city, country, price}) => {
 
     return(
         <div className="card">
@@ -11,7 +12,10 @@ const Hotel = ({slug, name, photo, description, availabilityFrom, availabilityTo
                 </figure>
             </div>
             <div className="card-content">
-                <p className="title is-4">{name}}</p>
+                <p className="title is-4">{name}</p>
+                <p className="title is-5">
+                    {dayjs(availabilityFrom).format('DD[-]MM[-]YYYY')} | {dayjs(availabilityTo).format('DD[-]MM[-]YYYY')}
+                </p>      
                 <p>{description}</p>
                 <div className="field is-grouped is-grouped-multiline" style={{marginTop: '1em'}}>
                 <div className="control">
@@ -29,10 +33,13 @@ const Hotel = ({slug, name, photo, description, availabilityFrom, availabilityTo
                 <div className="control">
                     <div className="tags">
                     <span className="tag is-medium is-info">
-                        <i className="fas fa-dollar-sign" style={{margin: '0 .125em'}}></i>
-                        <i className="fas fa-dollar-sign" style={{margin: '0 .125em'}}></i>
-                        <i className="fas fa-dollar-sign" style={{margin: '0 .125em', opacity: '.25'}}></i>
-                        <i className="fas fa-dollar-sign" style={{margin: '0 .125em', opacity: '.25'}}></i>
+                        {Array.from({length: 4}, (_, index) => 
+                            <i 
+                            key={nanoid}
+                            className="fas fa-dollar-sign" 
+                            style={{ margin: '0 .125em', opacity: `${index + 1 <= price ? '1' : '0.25'}` }} 
+                            /> 
+                        )}
                     </span>
                     </div>
                 </div>

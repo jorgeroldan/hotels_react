@@ -14,7 +14,7 @@ const Hero = ({filters}) => {
 
 
     return (
-      <section className="hero is-primary">
+      <section className="hero is-info is-bold">
         <div className="hero-body">
           <div className="container">
             <h1 className="title">Hoteles</h1>

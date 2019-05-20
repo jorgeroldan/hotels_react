@@ -19,34 +19,63 @@ class App extends Component {
       price: 0,
       rooms: 0, 
     }, 
-    hotels: [], 
+    hotelsBackup: [], 
+    hotelsFiltered: [], 
   }
 
-
-
 async componentDidMount(){
-
   try {
     const response = await fetch(API_URL)
     const data = await response.json()
     
-    this.setState({ hotels: data })
+    this.setState({ hotelsBackup: data, hotelsFiltered: data })
   } catch (error) {
     console.error(error)
   }
-
 }
 
-handleFilterChange = newFilters => this.setState({filters: newFilters})
+handleFilterChange = newFilters => this.setState({filters: newFilters}, () => {
+  this.handleApplyFilters()
+})
+
+handleApplyFilters = () => {
+  const { filters, hotelsBackup } = this.state
+
+  const hotelsFiltered = hotelsBackup 
+    .filter(hotel => dayjs(hotel.availabilityFrom).isAfter(filters.dateFrom))
+    .filter(hotel => dayjs(hotel.availabilityTo).isBefore(filters.dateTo))
+    .filter(hotel => {
+      if (filters.country === '' || filters.country === 'Todos los países') return true
+      if (filters.country === hotel.country) return true
+      return false 
+    })
+    .filter(hotel => {
+      const filterPrice = Number(filters.price)
+
+      if (filterPrice === 0 || filters.price === 'Cualquier precio') return true
+      if (filterPrice === hotel.price) return true
+      return false
+    }) 
+
+    .filter(hotel => {
+      if (filters.rooms === 0 || filters.rooms === 'Cualquier tamaño') return true
+      if (hotel.rooms >= filters.rooms) return true
+      return false
+    }) 
+
+
+
+  this.setState({ hotelsFiltered })
+}
 
 render() {
-  const {filters, hotels} = this.state
+  const {filters, hotelsFiltered} = this.state
 
   return (
     <div className="container">
       <Hero filters={filters} />
       <Filters filters={filters} onFilterChange={this.handleFilterChange} />
-      <Hotels data={hotels} />
+      <Hotels data={hotelsFiltered} />
     </div>
   )
 } 

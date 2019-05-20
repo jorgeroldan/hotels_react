@@ -47,7 +47,7 @@ class Filters extends Component {
         const { filters } = this.props
 
         return (
-            <nav className="navbar is-info" style={ {justifyContent: 'center' } }>
+            <nav className="navbar is-light" style={ {justifyContent: 'center' } }>
                 <div className="navbar-item">
                     <DateFilter 
                     onDateChange={this.handleOptionChange}
