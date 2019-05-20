@@ -3,12 +3,11 @@ import PropTypes  from 'prop-types'
 import dayjs from 'dayjs'
 
 const Hotel = ({nanoid, slug, name, photo, description, availabilityFrom, availabilityTo, rooms, city, country, price}) => {
-
     return(
         <div className="card">
             <div className="card-image">
                 <figure className="image is-4by3">
-                <img src={photo} alt={name} />
+                <img src={name === 'Hotel Huacalera' ? 'https://placehold.it/640x480' : photo} alt={name} />
                 </figure>
             </div>
             <div className="card-content">
