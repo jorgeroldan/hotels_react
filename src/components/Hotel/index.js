@@ -39,7 +39,7 @@ const Hotel = ({slug, name, photo, description, availabilityFrom, availabilityTo
                 </div>
             </div>
             <div className="card-footer">
-                <a href="javascript:alert('No implementamos esto aún :(')" className="card-footer-item has-background-primary has-text-white has-text-weight-bold">Reservar</a>
+                <a href="##" className="card-footer-item has-background-primary has-text-white has-text-weight-bold">Reservar</a>
             </div>
         </div>
     )

@@ -7,9 +7,17 @@ const Hotels = ({ data }) => {
 
     return (
         <div>
-          {data.map(hotel => 
-            (<Hotel {...hotel} />
-            ))}
+            <section className="section" style={ {marginTop: '3em'} }>
+                <div className="container">
+                    <div className="columns is-multiline">
+                        {data.map(hotel => (
+                            <div className="column is-one-third" key={hotel.slug}>
+                                <Hotel {...hotel} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
         </div>
     )
 }
